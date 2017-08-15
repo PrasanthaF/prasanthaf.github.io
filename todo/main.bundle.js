@@ -25,6 +25,7 @@ webpackEmptyContext.id = "../../../../../src async recursive";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__errors_404_component__ = __webpack_require__("../../../../../src/app/errors/404.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__events_event_details_event_route_activator_service__ = __webpack_require__("../../../../../src/app/events/event-details/event-route-activator.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__events_events_list_resolver_service__ = __webpack_require__("../../../../../src/app/events/events-list-resolver.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__events_create_event_event_route_deactivator_service__ = __webpack_require__("../../../../../src/app/events/create-event/event-route-deactivator.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppRoutingModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -40,18 +41,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var appRoutes = [
     {
-        path: 'events/new', component: __WEBPACK_IMPORTED_MODULE_4__events_create_event_create_event_component__["a" /* CreateEventComponent */]
+        path: 'events/new', component: __WEBPACK_IMPORTED_MODULE_4__events_create_event_create_event_component__["a" /* CreateEventComponent */], canDeactivate: [__WEBPACK_IMPORTED_MODULE_8__events_create_event_event_route_deactivator_service__["a" /* EventRouteDeactivatorService */]]
     },
     {
         path: 'events', component: __WEBPACK_IMPORTED_MODULE_2__events_events_list_component__["a" /* EventsListComponent */], resolve: { events: __WEBPACK_IMPORTED_MODULE_7__events_events_list_resolver_service__["a" /* EventsListResolverService */] }
     },
     {
         path: 'events/:id', component: __WEBPACK_IMPORTED_MODULE_3__events_event_details_event_details_component__["a" /* EventDetailsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__events_event_details_event_route_activator_service__["a" /* EventRouteActivatorService */]]
-    },
-    {
-        path: 'todo/events/:id', component: __WEBPACK_IMPORTED_MODULE_3__events_event_details_event_details_component__["a" /* EventDetailsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__events_event_details_event_route_activator_service__["a" /* EventRouteActivatorService */]]
     },
     {
         path: '404', component: __WEBPACK_IMPORTED_MODULE_5__errors_404_component__["a" /* Error404Component */]
@@ -150,6 +149,7 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__errors_404_component__ = __webpack_require__("../../../../../src/app/errors/404.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__events_event_details_event_route_activator_service__ = __webpack_require__("../../../../../src/app/events/event-details/event-route-activator.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__events_events_list_resolver_service__ = __webpack_require__("../../../../../src/app/events/events-list-resolver.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__events_create_event_event_route_deactivator_service__ = __webpack_require__("../../../../../src/app/events/create-event/event-route-deactivator.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -157,6 +157,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -191,10 +192,10 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_2__app_routing_module__["a" /* AppRoutingModule */]
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_7__shared_event_service__["a" /* EventService */], __WEBPACK_IMPORTED_MODULE_8__common_toastr_service__["a" /* ToastrService */], __WEBPACK_IMPORTED_MODULE_12__events_event_details_event_route_activator_service__["a" /* EventRouteActivatorService */], __WEBPACK_IMPORTED_MODULE_13__events_events_list_resolver_service__["a" /* EventsListResolverService */]
-            //   ,
+        providers: [__WEBPACK_IMPORTED_MODULE_7__shared_event_service__["a" /* EventService */], __WEBPACK_IMPORTED_MODULE_8__common_toastr_service__["a" /* ToastrService */], __WEBPACK_IMPORTED_MODULE_12__events_event_details_event_route_activator_service__["a" /* EventRouteActivatorService */], __WEBPACK_IMPORTED_MODULE_13__events_events_list_resolver_service__["a" /* EventsListResolverService */], __WEBPACK_IMPORTED_MODULE_14__events_create_event_event_route_deactivator_service__["a" /* EventRouteDeactivatorService */]
+            // ,
             // {
-            //   provide:'canDeactivateCreateEvent', useValue:checkDirtyState
+            //   provide: 'canDeactivateCreateEvent', useValue: checkDirtyState
             // }
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]]
@@ -370,6 +371,41 @@ CreateEventComponent = __decorate([
 
 var _a;
 //# sourceMappingURL=create-event.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/events/create-event/event-route-deactivator.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventRouteDeactivatorService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var EventRouteDeactivatorService = (function () {
+    function EventRouteDeactivatorService() {
+    }
+    EventRouteDeactivatorService.prototype.canDeactivate = function (component, currentRoute, currentState, nextState) {
+        if (component.isDirty)
+            return window.confirm('You are not saved this event, do you really want to cancel?');
+        return false;
+    };
+    return EventRouteDeactivatorService;
+}());
+EventRouteDeactivatorService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
+    __metadata("design:paramtypes", [])
+], EventRouteDeactivatorService);
+
+//# sourceMappingURL=event-route-deactivator.service.js.map
 
 /***/ }),
 
