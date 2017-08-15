@@ -760,7 +760,7 @@ var EventService = (function () {
     }
     EventService.prototype.getEvents = function () {
         var subject = new __WEBPACK_IMPORTED_MODULE_1_rxjs_RX__["Subject"]();
-        setTimeout(function () { subject.next(events); subject.complete(); }, 100);
+        setTimeout(function () { subject.next(events); subject.complete(); }, 1);
         return subject;
     };
     EventService.prototype.getEvent = function (id) {
