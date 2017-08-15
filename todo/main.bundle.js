@@ -51,6 +51,9 @@ var appRoutes = [
         path: 'events/:id', component: __WEBPACK_IMPORTED_MODULE_3__events_event_details_event_details_component__["a" /* EventDetailsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__events_event_details_event_route_activator_service__["a" /* EventRouteActivatorService */]]
     },
     {
+        path: 'todo/events/:id', component: __WEBPACK_IMPORTED_MODULE_3__events_event_details_event_details_component__["a" /* EventDetailsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__events_event_details_event_route_activator_service__["a" /* EventRouteActivatorService */]]
+    },
+    {
         path: '404', component: __WEBPACK_IMPORTED_MODULE_5__errors_404_component__["a" /* Error404Component */]
     },
     {
