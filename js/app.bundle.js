@@ -156,7 +156,7 @@ webpackJsonp([0],{
     angular
         .module("common.services")
         .factory("userResource", ["$resource", function($resource){
-            return $resource("http://jsonplaceholder.typicode.com/users/:id");
+            return $resource("https://jsonplaceholder.typicode.com/users/:id");
         }]);
 }());
 
