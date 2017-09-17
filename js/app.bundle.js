@@ -10,11 +10,16 @@ webpackJsonp([0],{
 
     var app = angular.module("userPortal",
         ["common.services",
+            "ngRoute",
             "ui.router",
-            "ui.bootstrap",
+            "ui.bootstrap"
         ]);
 
     // Routing Configurations
+
+    var UserListCtrl = __webpack_require__(60);
+    var UserDetailCtrl = __webpack_require__(61);
+
     app.config(["$stateProvider",
         "$urlRouterProvider",
         function ($stateProvider, $urlRouterProvider) {
@@ -57,15 +62,14 @@ webpackJsonp([0],{
     });
 
     // Services
-    __webpack_require__(60);
-    __webpack_require__(61);
-
-    // Controllers
     __webpack_require__(62);
     __webpack_require__(63);
 
+    // Controllers
+
+
     // Directives
-    __webpack_require__(64);    
+    __webpack_require__(64);
 
 }());
 
@@ -83,12 +87,22 @@ webpackJsonp([0],{
     "use strict";
 
     var angualr = __webpack_require__(5);
-    
-    angular
-        .module("common.services",
-                ["ngResource"]);
-}());
 
+    angular
+        .module("userPortal")
+        .controller("UserListCtrl", ["userResource", function (userResource) {
+            var vm = this;
+
+            userResource.query(function (data) {
+                vm.users = data;
+            });
+            vm.showImage = false;
+
+            vm.toggleImage = function () {
+                vm.showImage = !vm.showImage;
+            };
+        }]);
+}());
 
 
 /***/ }),
@@ -102,14 +116,14 @@ webpackJsonp([0],{
     var angualr = __webpack_require__(5);
 
     angular
-        .module("common.services")
-        .factory("userResource",
-                ["$resource",
-                userResource]);
+        .module("userPortal")
+        .controller("UserDetailCtrl", ["user", function (user) {
+            var vm = this;
 
-    function userResource($resource) {
-        return $resource("http://jsonplaceholder.typicode.com/users/:id");
-    }
+            vm.user = user;
+
+            vm.title = "user Detail: " + vm.user.name;
+        }]);
 }());
 
 
@@ -122,26 +136,11 @@ webpackJsonp([0],{
     "use strict";
 
     var angualr = __webpack_require__(5);
-
+    
     angular
-        .module("userPortal")
-        .controller("UserListCtrl",
-        ["userResource",
-            UserListCtrl]);
-
-    function UserListCtrl(userResource) {
-        var vm = this;
-
-        userResource.query(function (data) {
-            vm.users = data;
-        });
-        vm.showImage = false;
-
-        vm.toggleImage = function () {
-            vm.showImage = !vm.showImage;
-        };
-    }
+        .module("common.services", ["ngResource"]);
 }());
+
 
 
 /***/ }),
@@ -155,18 +154,10 @@ webpackJsonp([0],{
     var angualr = __webpack_require__(5);
 
     angular
-        .module("userPortal")
-        .controller("UserDetailCtrl",
-                    ["user",                     
-                     UserDetailCtrl]);
-
-    function UserDetailCtrl(user) {
-        var vm = this;
-
-        vm.user = user;
-
-        vm.title = "user Detail: " + vm.user.name;
-    }
+        .module("common.services")
+        .factory("userResource", ["$resource", function($resource){
+            return $resource("http://jsonplaceholder.typicode.com/users/:id");
+        }]);
 }());
 
 
