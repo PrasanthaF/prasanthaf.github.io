@@ -9,17 +9,9 @@ webpackJsonp([0],{
     var angualr = __webpack_require__(5);
 
     var app = angular.module("userPortal",
-        ["common.services",
-            "ngRoute",
-            "ui.router",
-            "ui.bootstrap"
-        ]);
+        ["common.services", "ui.router", "ui.bootstrap"]);
 
-    // Routing Configurations
-
-    var UserListCtrl = __webpack_require__(60);
-    var UserDetailCtrl = __webpack_require__(61);
-
+        // Routing Configurations
     app.config(["$stateProvider",
         "$urlRouterProvider",
         function ($stateProvider, $urlRouterProvider) {
@@ -62,11 +54,12 @@ webpackJsonp([0],{
     });
 
     // Services
-    __webpack_require__(62);
-    __webpack_require__(63);
+    __webpack_require__(60);
+    __webpack_require__(61);
 
     // Controllers
-
+    __webpack_require__(62);
+    __webpack_require__(63);
 
     // Directives
     __webpack_require__(64);
@@ -81,6 +74,40 @@ webpackJsonp([0],{
 /***/ }),
 
 /***/ 60:
+/***/ (function(module, exports, __webpack_require__) {
+
+(function () {
+    "use strict";
+
+    var angualr = __webpack_require__(5);
+    
+    angular
+        .module("common.services", ["ngResource"]);
+}());
+
+
+
+/***/ }),
+
+/***/ 61:
+/***/ (function(module, exports, __webpack_require__) {
+
+(function () {
+    "use strict";
+
+    var angualr = __webpack_require__(5);
+
+    angular
+        .module("common.services")
+        .factory("userResource", ["$resource", function($resource){
+            return $resource("https://jsonplaceholder.typicode.com/users/:id");
+        }]);
+}());
+
+
+/***/ }),
+
+/***/ 62:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function () {
@@ -107,7 +134,7 @@ webpackJsonp([0],{
 
 /***/ }),
 
-/***/ 61:
+/***/ 63:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function () {
@@ -123,40 +150,6 @@ webpackJsonp([0],{
             vm.user = user;
 
             vm.title = "user Detail: " + vm.user.name;
-        }]);
-}());
-
-
-/***/ }),
-
-/***/ 62:
-/***/ (function(module, exports, __webpack_require__) {
-
-(function () {
-    "use strict";
-
-    var angualr = __webpack_require__(5);
-    
-    angular
-        .module("common.services", ["ngResource"]);
-}());
-
-
-
-/***/ }),
-
-/***/ 63:
-/***/ (function(module, exports, __webpack_require__) {
-
-(function () {
-    "use strict";
-
-    var angualr = __webpack_require__(5);
-
-    angular
-        .module("common.services")
-        .factory("userResource", ["$resource", function($resource){
-            return $resource("https://jsonplaceholder.typicode.com/users/:id");
         }]);
 }());
 
